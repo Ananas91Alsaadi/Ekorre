@@ -3,7 +3,7 @@ html, body {
   padding: 0;
 }
 canvas {
-  display: none;
+  display: block;
 }
 .preWindow {
 	width: 400px;
