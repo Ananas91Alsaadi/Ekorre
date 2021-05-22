@@ -1,0 +1,71 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: none;
+}
+.preWindow {
+	width: 400px;
+	height: 700px;
+	background: #000;
+	margin: 0 auto;
+}
+
+
+input {
+	position: absolute;
+	border: 0;
+	border-bottom: 1px solid;
+	background: rgba(0,0,0,0);
+	
+}
+#signUp{
+	margin: 0 auto;
+	width: 500px;
+	position: relative;
+}
+input:focus {
+        outline: none;
+	background: rgba(0,0,0,0);
+
+}
+
+#email {
+	top: 75px;
+	left: 5%;
+
+}
+#name {
+	top: 25px;
+	left: 5%;
+
+}
+
+
+#password {
+	top: 125px;
+		left: 5%;
+
+}
+button {
+	background: #348C27;
+	position: absolute;
+		top: 175px;
+	left: 23%;
+color:#EAF5F2;
+	
+}
+img {
+	width: 100%;
+}
+
+#logInButton {
+	left: 5%;
+	background: rgba(0,0,0,0);
+	border: 0;
+	color: #348C27;
+}
+#logInButton:hover {
+	color: #fff;
+}
