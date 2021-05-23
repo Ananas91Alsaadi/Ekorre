@@ -19,13 +19,14 @@ var whileJump = 0;
 var moveMeter = 0;
 var finishedJump = true;
 var firstStart = true;
-var firstTouch = false;
+var firstTouchgame = false;
 var toLeft = false,
   toRight = false,
   overHalf = false;
 var scores = 0;
 var cameraCorrecting = 0;
 var canvas;
+var gamePage=false;
 function setup() {
   canvas = createCanvas(500, 680);
 
@@ -79,7 +80,7 @@ function setup() {
   reset.style("background:rgb(204, 171, 88)");
 
   logOut = createButton("Log Out");
-  logOut.mousePressed(restart);
+  logOut.mousePressed(logOutHere);
   logOut.style("display:none");
   logOut.style("width:150px");
   logOut.style("height:50px");
@@ -88,15 +89,16 @@ function setup() {
 }
 
 function keyPressed() {
+	  if (firstTouchgame&&gamePage) {
+
   if (firstStart) {
     moveMeter = 6;
     firstStart = false;
   }
-}
+}}
 
 function mousePressed() {
-  if (firstTouch) {
-    moveMeter = 6;
+  if (firstTouchgame&&gamePage) {
 
     if (firstStart) {
       moveMeter = 6;
@@ -109,7 +111,7 @@ function mousePressed() {
       toRight = true;
     }
   }
-  firstTouch = true;
+	firstTouchgame=true;
 }
 
 function mouseReleased() {
@@ -311,18 +313,6 @@ function draw() {
   squirrelY += moveMeter + cameraCorrecting;
   squirrel(squirrelX, squirrelY);
 
-  /*  
-  stroke(0);
-  strokeWeight(5);
-  line(0,height/2,width,height/2);
-    strokeWeight(2);
-  line(width/2,0,width/2,height);
-  for (let i=0;i<height/50;i++) {
-    line(0,i*50,width,i*50);
-    
-  }
-  */
-
   textSize(50);
   text(scores, 30, 50);
 
@@ -343,12 +333,12 @@ function draw() {
   }
 
   textSize(20);
-  text("♡", 405, 45);
-  text("♡", 435, 45);
-  text("♡", 465, 45);
+  text("?", 405, 45);
+  text("?", 435, 45);
+  text("?", 465, 45);
 
   for (let i = 0; i < hearts; i++) {
-    text("💗", 400 + i * 30, 45);
+    text("??", 400 + i * 30, 45);
   }
 
   if (squirrelY > height || hearts < 1) {
@@ -592,7 +582,7 @@ class dirtyFood {
     if (moveMeter < 0 && overHalf) {
       this.y = this.y - moveMeter * 2 + cameraCorrecting;
     }
-
+    
     noFill();
     stroke(0);
     strokeWeight(3);
@@ -605,10 +595,8 @@ class dirtyFood {
     fill(143, 3, 3);
     arc(this.x, this.y + 10, 20, 40, PI / 3.5, -PI / 0.76);
     arc(this.x - 7, this.y + 10, 20, 40, PI / 2.2, PI / 1.3);
-
     arc(this.x + 3, this.y - 12, 20, 40, PI / 0.8, -PI / 2.3);
     arc(this.x - 10, this.y - 12, 20, 40, PI / 0.7, -PI / 5);
-
     stroke(0);
     point(this.x - 5, this.y - 5);
     point(this.x - 10, this.y + 20);
@@ -616,10 +604,10 @@ class dirtyFood {
     strokeWeight(7);
     let xfly = random(-25, 25);
     let yfly = random(-20, 15);
-
     point(this.x + xfly, this.y - 50 + yfly);
     point(this.x + xfly, this.y - 50 + yfly);
     point(this.x + xfly, this.y - 50 + yfly);
+    
   }
 
   taking() {
@@ -651,15 +639,41 @@ function restart() {
   moveMeter = 0;
   finishedJump = true;
   firstStart = true;
-  firstTouch = false;
+  firstTouchgame = false;
 
   toLeft = false;
   toRight = false;
   overHalf = false;
   scores = 0;
   cameraCorrecting = 0;
+	
   reset.style("display:none");
   logOut.style("display:none");
 
   setup();
 }
+
+function logOutHere() {
+	gameAuth.signOut().then(()=> {
+	console.log("done!");
+	restart();
+	  gamePage = false;
+	document.getElementById("signUp").style.display="block";
+document.querySelector("canvas").style.display="none";
+	document.getElementById("scoreBorde").style.display="none";
+
+})}
+
+document.getElementById("logInButton").addEventListener("click", function () {
+  reset.style("display:none");
+  logOut.style("display:none");
+
+
+});
+
+
+
+
+
+
+

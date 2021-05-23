@@ -3,7 +3,7 @@ html, body {
   padding: 0;
 }
 canvas {
-  display: block;
+  display: none;
 }
 .preWindow {
 	width: 400px;
@@ -53,7 +53,6 @@ button {
 	position: absolute;
 		top: 175px;
 	left: 23%;
-color:#EAF5F2;
 	
 }
 img {
@@ -65,7 +64,35 @@ img {
 	background: rgba(0,0,0,0);
 	border: 0;
 	color: #348C27;
+
 }
 #logInButton:hover {
 	color: #fff;
+}
+
+#scoreBorde {
+	display: none;
+	margin: 20px 50px;
+	background: #b8d3ff;
+	width: 300px;
+	height: 500px;
+	float: right;
+}
+
+#scoreBorde h1 {
+	text-align: center;
+}
+#scoreBorde h3 {
+	margin: 20px 10px;;
+}
+#scoreBorde h3 strong {
+color:#B70003;
+}
+
+
+@media screen and (max-width: 1120px) {
+#scoreBorde {
+	float:none;
+	margin: 700px auto;
+	}
 }
