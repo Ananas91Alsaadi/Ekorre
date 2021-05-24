@@ -26,7 +26,9 @@ var toLeft = false,
 var scores = 0;
 var cameraCorrecting = 0;
 var canvas;
-var gamePage=false;
+var gamePage = false;
+var playerNameInGame;
+
 function setup() {
   canvas = createCanvas(500, 680);
 
@@ -55,8 +57,8 @@ function setup() {
     let drawBranches = 0;
     for (let j in allSpaceBetween) {
       if (
-        randomSpacebetween < allSpaceBetween[j] - 50 ||
-        randomSpacebetween > allSpaceBetween[j] + 50
+        randomSpacebetween < allSpaceBetween[j] - 50
+        || randomSpacebetween > allSpaceBetween[j] + 50
       ) {
         drawBranches++;
       }
@@ -70,7 +72,7 @@ function setup() {
 
   armStart = PI + 3 * QUARTER_PI;
   armEnd = PI;
-  
+
   reset = createButton("Play Again");
   reset.mousePressed(restart);
   reset.style("display:none");
@@ -89,16 +91,17 @@ function setup() {
 }
 
 function keyPressed() {
-	  if (firstTouchgame&&gamePage) {
+  if (gamePage) {
 
-  if (firstStart) {
-    moveMeter = 6;
-    firstStart = false;
+    if (firstStart) {
+      moveMeter = 6;
+      firstStart = false;
+    }
   }
-}}
+}
 
 function mousePressed() {
-  if (firstTouchgame&&gamePage) {
+  if (firstTouchgame && gamePage) {
 
     if (firstStart) {
       moveMeter = 6;
@@ -111,7 +114,7 @@ function mousePressed() {
       toRight = true;
     }
   }
-	firstTouchgame=true;
+  firstTouchgame = true;
 }
 
 function mouseReleased() {
@@ -138,10 +141,10 @@ function goRight() {
 }
 
 function draw() {
-  
+
   canvas.center("horizontal");
-  reset.position(windowWidth / 2-170, height / 2 + 40);
-  logOut.position(windowWidth / 2+30, height / 2 + 40);
+  reset.position(windowWidth / 2 - 170, height / 2 + 40);
+  logOut.position(windowWidth / 2 + 30, height / 2 + 40);
 
   if (moveMeter < 0 && overHalf) {
     for (let i in allSpaceBetween) {
@@ -221,8 +224,8 @@ function draw() {
     let drawBranches = 0;
     for (let j in allSpaceBetween) {
       if (
-        randomSpacebetween < allSpaceBetween[j] - 50 ||
-        randomSpacebetween > allSpaceBetween[j] + 50
+        randomSpacebetween < allSpaceBetween[j] - 50
+        || randomSpacebetween > allSpaceBetween[j] + 50
       ) {
         drawBranches++;
       }
@@ -333,29 +336,31 @@ function draw() {
   }
 
   textSize(20);
-  text("?", 405, 45);
-  text("?", 435, 45);
-  text("?", 465, 45);
+  text("🖤", 400, 45);
+  text("🖤", 430, 45);
+  text("🖤", 460, 45);
 
   for (let i = 0; i < hearts; i++) {
-    text("??", 400 + i * 30, 45);
+    text("💗", 400 + i * 30, 45);
   }
 
   if (squirrelY > height || hearts < 1) {
-  push();
-  strokeWeight(1);
-  textSize(70);
-  stroke("#e66910");
+    push();
+    strokeWeight(1);
+    textSize(70);
+    stroke("#e66910");
 
-  fill(0);
-  text("Game Over", width / 7, height / 2);
+    fill(0);
+    text("Game Over", width / 7, height / 2);
 
-  reset.style("display:block");
-  logOut.style("display:block");
+    reset.style("display:block");
+    logOut.style("display:block");
 
-  pop();
+    pop();
 
   }
+
+  document.getElementById
 }
 
 function squirrel(x, y) {
@@ -505,10 +510,10 @@ class branches {
     if (finishedJump && hearts > 0) {
       if (this.leftOrRight) {
         if (
-          squirrelY + 30 < this.y + this.thickness / 2 &&
-          squirrelY + 30 > this.y - this.thickness / 2 &&
-          squirrelX > width / 2 + width / 10 / 2 &&
-          squirrelX < width / 2 + width / 10 / 2 + this.x4
+          squirrelY + 30 < this.y + this.thickness / 2
+          && squirrelY + 30 > this.y - this.thickness / 2
+          && squirrelX > width / 2 + width / 10 / 2
+          && squirrelX < width / 2 + width / 10 / 2 + this.x4
         ) {
           squirrelJump = true;
           jumpSteps = this.y;
@@ -524,10 +529,10 @@ class branches {
         }
       } else {
         if (
-          squirrelY + 30 < this.y + this.thickness / 2 &&
-          squirrelY + 30 > this.y - this.thickness / 2 &&
-          squirrelX < width / 2 - width / 10 / 2 &&
-          squirrelX > width / 2 - width / 10 - this.x4
+          squirrelY + 30 < this.y + this.thickness / 2
+          && squirrelY + 30 > this.y - this.thickness / 2
+          && squirrelX < width / 2 - width / 10 / 2
+          && squirrelX > width / 2 - width / 10 - this.x4
         ) {
           squirrelJump = true;
           jumpSteps = this.y;
@@ -582,7 +587,7 @@ class dirtyFood {
     if (moveMeter < 0 && overHalf) {
       this.y = this.y - moveMeter * 2 + cameraCorrecting;
     }
-    
+
     noFill();
     stroke(0);
     strokeWeight(3);
@@ -607,7 +612,7 @@ class dirtyFood {
     point(this.x + xfly, this.y - 50 + yfly);
     point(this.x + xfly, this.y - 50 + yfly);
     point(this.x + xfly, this.y - 50 + yfly);
-    
+
   }
 
   taking() {
@@ -620,60 +625,79 @@ class dirtyFood {
 }
 
 function restart() {
-  allSpots = [];
-  allTreeSpots = [];
-  allBranches = [];
-  allFood = [];
-  alldirtyFood = [];
-  hearts = 3;
 
-  allSpaceBetween = [600];
-  speed = 5;
-  moveRight = 1;
-  squirrelX = 250;
-  squirrelY = 340;
-  moveDown = 0;
-  squirrelJump = false;
-  jumpDown = false;
-  whileJump = 0;
-  moveMeter = 0;
-  finishedJump = true;
-  firstStart = true;
-  firstTouchgame = false;
+  gameDb.collection("scoreBoard").doc(userIDgame).set({
+    name: playerNameGame,
+    score: scores
+  }).then(() => {
 
-  toLeft = false;
-  toRight = false;
-  overHalf = false;
-  scores = 0;
-  cameraCorrecting = 0;
-	
-  reset.style("display:none");
-  logOut.style("display:none");
 
-  setup();
+    gameDb.collection("scoreBoard").get().then((snapShot) => {
+      scoreBoardGame = [];
+
+      snapShot.docs.forEach(doc => {
+        scoreBoardGame.push(doc.data());
+        console.log(scoreBoardGame);
+      });
+
+      gameDb.collection("scoreBoard").doc(userIDgame).get().then((doc) => {
+        playerNameGame = doc.data().name;
+        document.getElementById("playerScore").innerHTML = doc.data().name + " | " + doc.data().score;
+
+
+      });
+
+      writeSB();
+
+    });
+    allSpots = [];
+    allTreeSpots = [];
+    allBranches = [];
+    allFood = [];
+    alldirtyFood = [];
+    hearts = 3;
+
+    allSpaceBetween = [600];
+    speed = 5;
+    moveRight = 1;
+    squirrelX = 250;
+    squirrelY = 340;
+    moveDown = 0;
+    squirrelJump = false;
+    jumpDown = false;
+    whileJump = 0;
+    moveMeter = 0;
+    finishedJump = true;
+    firstStart = true;
+    firstTouchgame = false;
+
+    toLeft = false;
+    toRight = false;
+    overHalf = false;
+    scores = 0;
+    cameraCorrecting = 0;
+
+    reset.style("display:none");
+    logOut.style("display:none");
+
+    setup();
+  });
+
 }
 
 function logOutHere() {
-	gameAuth.signOut().then(()=> {
-	console.log("done!");
-	restart();
-	  gamePage = false;
-	document.getElementById("signUp").style.display="block";
-document.querySelector("canvas").style.display="none";
-	document.getElementById("scoreBorde").style.display="none";
 
-})}
+  restart();
+
+  //gameAuth.signOut();
+  gamePage = false;
+  document.getElementById("signUp").style.display = "block";
+  document.querySelector("canvas").style.display = "none";
+  document.getElementById("scoreBorde").style.display = "none";
+
+}
 
 document.getElementById("logInButton").addEventListener("click", function () {
   reset.style("display:none");
   logOut.style("display:none");
-
-
 });
-
-
-
-
-
-
-

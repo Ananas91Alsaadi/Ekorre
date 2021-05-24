@@ -16,58 +16,61 @@ canvas {
 input {
 	position: absolute;
 	border: 0;
-	border-bottom: 1px solid;
+	border-bottom: 1px solid #fff;
 	background: rgba(0,0,0,0);
-	
+	color: #EB743D;
+		font-size: 20px;
+	color: #fff;
+
+
 }
 #signUp{
 	margin: 0 auto;
 	width: 500px;
 	position: relative;
+	
 }
 input:focus {
         outline: none;
 	background: rgba(0,0,0,0);
-
 }
 
 #email {
-	top: 75px;
-	left: 5%;
+	top: 275px;
+	left: 20%;
 
 }
 #name {
-	top: 25px;
-	left: 5%;
+	top: 225px;
+	left: 20%;
 
 }
 
 
 #password {
-	top: 125px;
-		left: 5%;
+	top: 325px;
+		left: 20%;
 
 }
 button {
-	background: #348C27;
+	background: #EB743D;
 	position: absolute;
-		top: 175px;
-	left: 23%;
-	
+		top: 375px;
+	left: 48%;
+			font-size: 20px;
+	color: #fff;
+	padding: 5px;
+
 }
 img {
 	width: 100%;
 }
 
 #logInButton {
-	left: 5%;
-	background: rgba(0,0,0,0);
-	border: 0;
-	color: #348C27;
+	left: 23%;
+	background: rgba(255,255,255,1);
+	color: #EB743D;
 
-}
-#logInButton:hover {
-	color: #fff;
 }
 
 #scoreBorde {
@@ -75,7 +78,7 @@ img {
 	margin: 20px 50px;
 	background: #b8d3ff;
 	width: 300px;
-	height: 500px;
+	height: 300px;
 	float: right;
 }
 
@@ -89,8 +92,22 @@ img {
 color:#B70003;
 }
 
+::placeholder {
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: #fff;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: #fff;
+}
+
 
 @media screen and (max-width: 1120px) {
+	
 #scoreBorde {
 	float:none;
 	margin: 700px auto;
