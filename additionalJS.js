@@ -56,7 +56,7 @@ document.getElementById("logInButton").addEventListener("click", function () {
       alert("You are in a tree, jump up the branches to get to the top! To move, use the arrow keys on your computer or touch left and right on your smartphone. \nTry to collect as much coins as possible to get a higher score than your friends! \nAvoid eating rotten food, every time you eat one, you loose a heart for a maximum of 3 times.");
 
 
-    });
+    }).catch(err=>{alert(err.message)});
 
   } else {
     alert("Wrong Email or Password")
@@ -131,7 +131,7 @@ document.getElementById("signUpButton").addEventListener("click", function () {
 
       alert("You are in a tree, jump up the branches to get to the top! To move, use the arrow keys on your computer or touch left and right on your smartphone. \nTry to collect as much coins as possible to get a higher score than your friends! \nAvoid eating rotten food, every time you eat one, you loose a heart for a maximum of 3 times.");
 
-    });
+    }).catch(err=>{alert(err.message)});
 
   } else {
     alert("Wrong email, weak password or empty player name");
