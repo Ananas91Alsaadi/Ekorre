@@ -625,9 +625,13 @@ class dirtyFood {
 }
 
 function restart() {
+	console.log(preScore);
+		console.log(scores);
+
 if (preScore>scores) {
 	scores=preScore;
 	}
+	
   gameDb.collection("scoreBoard").doc(userIDgame).set({
     name: playerNameGame,
     score: scores
@@ -639,11 +643,12 @@ if (preScore>scores) {
 
       snapShot.docs.forEach(doc => {
         scoreBoardGame.push(doc.data());
-        console.log(scoreBoardGame);
       });
 
       gameDb.collection("scoreBoard").doc(userIDgame).get().then((doc) => {
         playerNameGame = doc.data().name;
+		  			preScore=doc.data().score;
+
         document.getElementById("playerScore").innerHTML = doc.data().name + " | " + doc.data().score;
 
 

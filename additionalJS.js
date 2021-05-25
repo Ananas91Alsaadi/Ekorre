@@ -26,6 +26,8 @@ document.getElementById("logInButton").addEventListener("click", function () {
       userIDgame = cons.user.uid;
       gameDb.collection("scoreBoard").doc(cons.user.uid).get().then((doc) => {
         playerNameGame = doc.data().name;
+		  			preScore=doc.data().score;
+
         document.getElementById("playerScore").innerHTML = doc.data().name + " | " + doc.data().score;
 
 
@@ -93,7 +95,8 @@ document.getElementById("signUpButton").addEventListener("click", function () {
 
         gameDb.collection("scoreBoard").doc(cons.user.uid).get().then((doc) => {
           playerNameGame = doc.data().name;
-preScore=doc.data().score;
+			preScore=doc.data().score;
+			
           document.getElementById("playerScore").innerHTML = doc.data().name + " | " + doc.data().score;
 
         });
