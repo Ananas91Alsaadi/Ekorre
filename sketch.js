@@ -28,6 +28,18 @@ var cameraCorrecting = 0;
 var canvas;
 var gamePage = false;
 var playerNameInGame;
+var loseSound=true;
+
+function preload() {
+  soundFormats('mp3');
+  soundEat = loadSound('take');
+  soundBoom = loadSound('bad');
+    soundLose = loadSound('lose');
+
+
+}
+
+
 
 function setup() {
   canvas = createCanvas(500, 680);
@@ -336,12 +348,12 @@ function draw() {
   }
 
   textSize(20);
-  text("🖤", 400, 45);
-  text("🖤", 430, 45);
-  text("🖤", 460, 45);
+  text("ðŸ–¤", 400, 45);
+  text("ðŸ–¤", 430, 45);
+  text("ðŸ–¤", 460, 45);
 
   for (let i = 0; i < hearts; i++) {
-    text("💗", 400 + i * 30, 45);
+    text("ðŸ’—", 400 + i * 30, 45);
   }
 
   if (squirrelY > height || hearts < 1) {
@@ -349,7 +361,10 @@ function draw() {
     strokeWeight(1);
     textSize(70);
     stroke("#e66910");
-
+if (loseSound){
+  soundLose.play();
+  loseSound=false;
+}
     fill(0);
     text("Game Over", width / 7, height / 2);
 
@@ -572,6 +587,7 @@ class food {
   taking() {
     let distance = dist(this.x, this.y, squirrelX, squirrelY);
     if (distance < 40) {
+      soundEat.play();
       scores += 5;
       allFood.pop();
     }
@@ -618,6 +634,8 @@ class dirtyFood {
   taking() {
     let distance = dist(this.x, this.y, squirrelX, squirrelY);
     if (distance < 40) {
+            soundBoom.play();
+
       hearts -= 1;
       alldirtyFood.pop();
     }
@@ -677,7 +695,7 @@ if (preScore>scores) {
     finishedJump = true;
     firstStart = true;
     firstTouchgame = false;
-
+loseSound=true;
     toLeft = false;
     toRight = false;
     overHalf = false;
