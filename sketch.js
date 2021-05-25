@@ -348,12 +348,12 @@ function draw() {
   }
 
   textSize(20);
-  text("ðŸ–¤", 400, 45);
-  text("ðŸ–¤", 430, 45);
-  text("ðŸ–¤", 460, 45);
+  text("🖤", 400, 45);
+  text("🖤", 430, 45);
+  text("🖤", 460, 45);
 
   for (let i = 0; i < hearts; i++) {
-    text("ðŸ’—", 400 + i * 30, 45);
+    text("💗", 400 + i * 30, 45);
   }
 
   if (squirrelY > height || hearts < 1) {
