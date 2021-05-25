@@ -625,7 +625,9 @@ class dirtyFood {
 }
 
 function restart() {
-
+if (preScore>scores) {
+	scores=preScore;
+	}
   gameDb.collection("scoreBoard").doc(userIDgame).set({
     name: playerNameGame,
     score: scores
